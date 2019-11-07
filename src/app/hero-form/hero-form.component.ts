@@ -24,8 +24,13 @@ export class HeroFormComponent implements OnInit {
 
   //funcion de enviar el formulario
   onSubmit(): void{
-    this.submitted = true 
+    this.submitted = true ;
     console.log('formulario enviado? :', this.submitted);
+  }
+  
+  onEdit(): void{
+    this.submitted =false;
+    console.log('Volver a rellenar');
   }
   //generamos el json del modelo para poder debugar , ademas generamos una copia del objeto.
   get diagnostic(): string{

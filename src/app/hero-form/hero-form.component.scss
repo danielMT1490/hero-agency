@@ -1,0 +1,9 @@
+/*aqui le decimos que si la clase es valida y tiene el atrr required
+o si es valido y tiene la clase required*/
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; /* green */
+  }
+  /*con la instrución not(form) decimos que solo se aplice a las clases dentro del form*/
+  .ng-invalid:not(form)  {
+    border-left: 5px solid #a94442; /* red */
+  }

@@ -1,0 +1,70 @@
+<!--Utilizaremos las clases de boostrap-->
+<div class="container">
+    <h1>Hero Form</h1>
+    <!--creamos una variable de template con #heroForm-->
+    <!--con el tag (ngSubmit) captuaramos el evento que lazana el boton de tipo submit de dentro del formulario-->
+    <form #heroForm="ngForm" (ngSubmit)="onSubmit()">
+        <!--{{heroFrom | json }} podemos ver todos los datos del template-->
+        <!--La etiqueta required nos exiga valor en el campo-->
+        <div class="form-group">
+            <label for="name" >Name</label>
+            <!--Two way data binding [(ngModel)] asocia el valor del imput a la propiedad del modelo
+            es obligatorio qu eel input contenga un name-->
+            <input 
+                #spy
+                type="text" 
+                class="form-control" 
+                id="name" 
+                required
+                name = "name"
+                [(ngModel)]="model.name"
+                #name = "ngModel"
+            >
+            <!--al crear la variable #name creamos una variable del fromControl del input
+            este fromControl  contiene los parametros-->
+            <div [hidden]="name.valid" class="alert alert-danger">
+                Name Is Required
+            </div>
+            <!-- vemos como se modifica esas clases dependiendo de las acciones que se utilicen
+            y se puede modificar las clases del input dependiedo del estado-->
+            {{spy.className | json}}
+        </div>
+        <!--Creamos un select con los datos de la clase del componente-->
+        <div class="form-group">
+                <label for="power" >Power</label>
+                <!--asociamos el valor en el tag select-->
+                <select  
+                    class="form-control" 
+                    id="power" 
+                    required
+                    name= "power"
+                    [(ngModel)]= "model.power"
+                >
+                    <!--generamos un for para pintar todos poderes-->
+                    <!--con [value] utilizamos un prperty bindin podemos utilizar tambien la expresion value="{{pow}}"-->
+                    <option *ngFor="let power of powers" [value]="power">{{power}}</option>
+                </select>
+            </div>
+        <!--Es necesario poner ir en el imput y el for del label relacionado-->
+        <div class="form-group">
+            <label for="alterEgo" >Alter Ego</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="alterEgo"
+                name= "alterEgo"
+                [(ngModel)]= "model.alterEgo"
+            >
+        </div>
+        <!--Gracias a la variable heroForm podemos acceder a los estados del fromulario -->       
+        <button type="submit" class="btn btn-success"
+            [disabled]="!heroForm.valid"
+        >
+            Submit
+        </button>
+    </form>
+    <br>
+    <!--con diagnostic podemos ver como se interpolan los datos del fromulario con el modelo-->
+    <p>{{diagnostic}}</p>
+</div>
+
